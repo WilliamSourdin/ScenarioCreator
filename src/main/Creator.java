@@ -7,12 +7,14 @@ public class Creator
 
 	public static void main(String[] args)
 	{
-		// TODO Auto-generated method stub
-		Scenario a = new Scenario("HelloWorld");
-		StringBuilder stringBuilder = new StringBuilder();
-		a.generateElement(stringBuilder);
-		
-		System.out.println(stringBuilder);
+		try
+		{
+			Scenario a = new Scenario("HelloWorld");
+			a.generateScenario();
+		}
+		catch(Exception e)
+		{
+			System.err.println(e.getMessage());
+		}
 	}
-
 }
