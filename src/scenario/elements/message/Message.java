@@ -1,7 +1,7 @@
 /**
  * 
  */
-package scenario.elements;
+package scenario.elements.message;
 
 import scenario.IElement;
 
@@ -20,10 +20,10 @@ public class Message implements IElement
 	}
 
 	/* (non-Javadoc)
-	 * @see element.IElement#generateElement(java.lang.StringBuilder)
+	 * @see element.IElement#generateElement(java.lang.StringBuilder, int tabLevel)
 	 */
 	@Override
-	public void generateElement(StringBuilder stringBuilder)
+	public void generateElement(StringBuilder stringBuilder, int tabLevel)
 	{
 		// TODO Auto-generated method stub
 

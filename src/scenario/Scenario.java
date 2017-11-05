@@ -4,14 +4,12 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.LinkedList;
 
-import scenario.elements.DialogPart;
-import scenario.elements.Message;
-import scenario.elements.RolePart;
-import scenario.elements.TablePart;
+import scenario.elements.dialog.DialogPart;
+import scenario.elements.message.Message;
+import scenario.elements.role.RolePart;
+import scenario.elements.table.TablePart;
 
 /**
  * Scenario class
@@ -21,7 +19,6 @@ import scenario.elements.TablePart;
 public class Scenario
 {
 	private String scenarioName;
-	private String format;
 	private DialogPart dialogPart;
 	private RolePart rolePart;
 	private TablePart tablePart;
@@ -34,8 +31,12 @@ public class Scenario
 	public Scenario(String scenarioName)
 	{
 		this.scenarioName = scenarioName;
-		this.format = Constant.DEFAULT_FORMAT;
 		this.messageList = new LinkedList<>();
+		
+		// TODO
+		this.dialogPart = new DialogPart();
+		this.rolePart = new RolePart();
+		this.tablePart = new TablePart();
 	}
 
 	public void createDialogPart(DialogPart dialogPart)
@@ -67,26 +68,29 @@ public class Scenario
 	{
 		// Init string builder
 		StringBuilder stringBuilder = new StringBuilder();
+		
+		// Next tab level
+		int nextTabLevel = 1;
 
 		// First scenario line
-		stringBuilder.append(scenarioName).append(Constant.NEW_SPACE).append(format).append(Constant.NEW_LINE);
+		stringBuilder.append(scenarioName).append(Constant.NEW_SPACE).append(Constant.DEFAULT_FORMAT).append(Constant.NEW_LINE);
 
 		// Open brace
 		stringBuilder.append(Constant.OPEN_BRACE).append(Constant.NEW_LINE);
 
 		// Dialog part
-		//dialogPart.generateElement(stringBuilder);
+		dialogPart.generateElement(stringBuilder, nextTabLevel);
 
 		// Role part
-		//rolePart.generateElement(stringBuilder);
+		rolePart.generateElement(stringBuilder, nextTabLevel);
 
 		// Table part
-		//tablePart.generateElement(stringBuilder);
+		tablePart.generateElement(stringBuilder, nextTabLevel);
 
 		// Message part
 		for(Message message : messageList)
 		{
-			message.generateElement(stringBuilder);
+			message.generateElement(stringBuilder, nextTabLevel);
 		}
 
 		// Close brace
@@ -101,5 +105,8 @@ public class Scenario
 		{
 			out.close();
 		}
+		
+		// TODO 
+		System.out.println(stringBuilder.toString());
 	}
 }

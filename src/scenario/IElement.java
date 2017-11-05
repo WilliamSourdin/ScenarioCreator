@@ -5,7 +5,7 @@ public interface IElement
 	/**
 	 * Generate scenario element
 	 * @param stringBuilder
-	 * @return
+	 * @param tabLevel
 	 */
-	public void generateElement(StringBuilder stringBuilder);
+	public void generateElement(StringBuilder stringBuilder, int tabLevel);
 }
